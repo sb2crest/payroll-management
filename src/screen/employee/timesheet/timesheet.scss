@@ -1,0 +1,121 @@
+.timesheet {
+  display: flex;
+  width: 100%;
+
+  .timesheet-container {
+    flex: 6;
+
+    .top {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .search-container {
+        position: relative;
+
+        .search-text-box {
+          border: none;
+          border-bottom: 1px solid #c0bebe;
+          padding: 8px 12px;
+          font-size: 16px;
+          color: #333;
+          outline: none;
+          box-sizing: border-box;
+
+          &:focus {
+            border-bottom: 1.8px solid #6bbcf9;
+          }
+        }
+
+        .search-button {
+          position: absolute;
+          top: 50%;
+          right: 15px;
+          transform: translateY(-50%);
+          border: none;
+          background-color: transparent;
+          cursor: pointer;
+
+          .icon {
+            color: #bcbcbc;
+            font-size: 20px;
+          }
+        }
+      }
+
+      .schedule-rate-container {
+        display: flex;
+        gap: 12vh;
+        margin: 0px 20px;
+
+        .label {
+          color: #aeaeae;
+          font-size: 13px;
+          font-weight: 500;
+          margin-left: -20px;
+        }
+
+        .value {
+          font-size: 16px;
+          position: relative;
+
+          &::before {
+            content: "";
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: #34a3f8;
+            border-radius: 50%;
+            box-shadow: 0 0 4px rgba(5, 58, 99, 0.5);
+          }
+        }
+
+        .schedule {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .worksheet-id {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .rate {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .status {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .days {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+
+    .bottom {
+      padding: 18px;
+      .MuiTableContainer-root {
+        padding: 0;
+        border-radius: 0;
+      }
+      .MuiTableHead-root {
+        .MuiTableRow-root {
+          .MuiTableCell-root {
+            font-size: 13.5px;
+            color: #aeaeae;
+            font-family: "Source Sans 3", sans-serif;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.login-container {
+  .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+    font-size: 16px;
+    font-weight: 500;
+    color: #213547;
+    font-family: "Source Sans 3", sans-serif;
+  }
+
+  .css-ahj2mt-MuiTypography-root {
+    font-family: "Source Sans 3", sans-serif;
+    font-size: 16px;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    font-family: "Source Sans 3", sans-serif;
+  }
+
+  .css-101ca9i-MuiTypography-root-MuiLink-root {
+    font-family: "Source Sans 3", sans-serif;
+  }
+
+  .css-ijul54-MuiTypography-root {
+    font-family: "Source Sans 3", sans-serif;
+  }
+
+  .css-1vhaqj4-MuiButtonBase-root-MuiButton-root {
+    background-color: #f0f8fd;
+    border: none;
+    color: #018ffe;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    box-shadow: none;
+    font-family: "Source Sans 3", sans-serif;
+
+    &:hover {
+      background-color: #c5dff8;
+      color: #fff;
+      box-shadow: none;
+    }
+  }
+}

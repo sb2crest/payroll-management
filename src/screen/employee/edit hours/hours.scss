@@ -1,0 +1,68 @@
+.edit-hours {
+  display: flex;
+  width: 100%;
+  .edit-hours-container {
+    flex: 6;
+
+    .content {
+      display: flex;
+      justify-content: center;
+      margin: 5vh;
+      .form-container {
+        margin: 12px;
+        padding: 20px;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.4);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.5);
+        width: 100%;
+        max-width: 435px;
+        box-sizing: border-box;
+        .form-data {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 15px;
+
+          label {
+            font-size: 14px;
+            color: #939292;
+            margin-bottom: 5px;
+            position: relative;
+            transition: all 0.3s ease;
+          }
+
+          input {
+            padding: 8px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 15px;
+            outline: none;
+
+            &:focus {
+              border-color: #bde3fa;
+              background-color: #f0f8fd;
+            }
+          }
+        }
+
+        .button {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          button {
+            background-color: #f0f8fd;
+            border: none;
+            color: #018ffe;
+            cursor: pointer;
+            padding: 8px 28px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 5px;
+
+            &:hover {
+              background-color: #e0f0ff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

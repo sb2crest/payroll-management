@@ -1,0 +1,76 @@
+.info {
+  display: flex;
+  width: 100%;
+  .info-container {
+    flex: 6;
+
+    .content-container {
+      .edit-print-button {
+        margin: 15px;
+        display: flex;
+        justify-content: space-between;
+
+        .button {
+          background-color: #f0f8fd;
+          border: none;
+          color: #018ffe;
+          cursor: pointer;
+          padding: 8px 28px;
+          font-size: 16px;
+          font-weight: 500;
+          border-radius: 5px;
+        }
+      }
+
+      .top,
+      .center,
+      .bottom {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+      }
+
+      .top {
+        display: flex;
+        justify-content: space-around;
+
+        .label {
+          color: #aeaeae;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .value {
+          font-size: 18px;
+          font-weight: 300;
+        }
+
+        .data {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      .center {
+        padding: 15px;
+        .MuiTableContainer-root {
+          padding: 0;
+          border-radius: 0;
+        }
+        .MuiTableHead-root {
+          .MuiTableRow-root {
+            .MuiTableCell-root {
+              font-size: 13.5px;
+              color: #aeaeae;
+              font-family: "Source Sans 3", sans-serif;
+            }
+          }
+        }
+      }
+
+      .bottom {
+        padding: 12px;
+      }
+    }
+  }
+}
