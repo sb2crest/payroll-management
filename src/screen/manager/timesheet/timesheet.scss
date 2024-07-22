@@ -1,0 +1,95 @@
+.add-timesheet {
+  display: flex;
+  width: 100%;
+  .add-timesheet-container {
+    flex: 6;
+
+    .top,
+    .center,
+    .bottom {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 10px;
+    }
+
+    .top {
+      .search-container {
+        position: relative;
+
+        .search-button {
+          background-color: #f0f8fd;
+          border: none;
+          color: #018ffe;
+          cursor: pointer;
+          padding: 5px 20px;
+          font-size: 16px;
+          font-weight: 500;
+          border-radius: 5px;
+          &:hover {
+            background-color: #c5dff8;
+            color: #fff;
+            box-shadow: none;
+          }
+        }
+
+        .search-text-box {
+          border: none;
+          border-bottom: 1px solid #c0bebe;
+          padding: 8px 5px;
+          font-size: 14px;
+          color: #333;
+          outline: none;
+          box-sizing: border-box;
+          margin: 10px;
+
+          &:focus {
+            border-bottom: 1.8px solid #6bbcf9;
+          }
+        }
+      }
+    }
+
+    .center {
+      padding: 20px;
+
+      .css-1ex1afd-MuiTableCell-root {
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 16px;
+      }
+
+      .css-177gid-MuiTableCell-root {
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 16px;
+      }
+      .MuiTableContainer-root {
+        padding: 0;
+        border-radius: 0;
+      }
+      .MuiTableHead-root {
+        .MuiTableRow-root {
+          .MuiTableCell-root {
+            font-size: 14px;
+            color: #aeaeae;
+            font-family: "Source Sans 3", sans-serif;
+          }
+        }
+      }
+
+      .approve-button {
+        background-color: #f0f8fd;
+        border: none;
+        color: #018ffe;
+        cursor: pointer;
+        padding: 5px 20px;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 5px;
+        &:hover {
+          background-color: #c5dff8;
+          color: #fff;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}

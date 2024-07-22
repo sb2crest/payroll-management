@@ -1,10 +1,23 @@
-.timesheet {
+.add-hours {
   display: flex;
   width: 100%;
-
-  .timesheet-container {
+  .add-hours-container {
     flex: 6;
-
+    .search-button {
+      background-color: #f0f8fd;
+      border: none;
+      color: #018ffe;
+      cursor: pointer;
+      padding: 5px 20px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 5px;
+      &:hover {
+        background-color: #c5dff8;
+        color: #fff;
+        box-shadow: none;
+      }
+    }
     .top {
       padding: 20px;
       display: flex;
@@ -17,29 +30,15 @@
         .search-text-box {
           border: none;
           border-bottom: 1px solid #c0bebe;
-          padding: 8px 12px;
-          font-size: 16px;
+          padding: 8px 5px;
+          font-size: 14px;
           color: #333;
           outline: none;
           box-sizing: border-box;
+          margin: 10px;
 
           &:focus {
             border-bottom: 1.8px solid #6bbcf9;
-          }
-        }
-
-        .search-button {
-          position: absolute;
-          top: 50%;
-          right: 15px;
-          transform: translateY(-50%);
-          border: none;
-          background-color: transparent;
-          cursor: pointer;
-
-          .icon {
-            color: #bcbcbc;
-            font-size: 20px;
           }
         }
       }
@@ -100,9 +99,9 @@
         }
       }
     }
-
     .bottom {
-      padding: 18px;
+      padding: 20px;
+
       .css-1ex1afd-MuiTableCell-root {
         font-family: "Source Sans 3", sans-serif;
         font-size: 16px;
@@ -119,7 +118,7 @@
       .MuiTableHead-root {
         .MuiTableRow-root {
           .MuiTableCell-root {
-            font-size: 13.5px;
+            font-size: 14px;
             color: #aeaeae;
             font-family: "Source Sans 3", sans-serif;
           }
@@ -129,30 +128,12 @@
   }
 }
 
-.info {
+.edit-hours {
   display: flex;
   width: 100%;
-  .info-container {
+  .edit-hours-container {
     flex: 6;
-
     .content-container {
-      .edit-print-button {
-        margin: 15px;
-        display: flex;
-        justify-content: space-between;
-
-        .button {
-          background-color: #f0f8fd;
-          border: none;
-          color: #018ffe;
-          cursor: pointer;
-          padding: 8px 28px;
-          font-size: 16px;
-          font-weight: 500;
-          border-radius: 5px;
-        }
-      }
-
       .top,
       .center,
       .bottom {
@@ -160,33 +141,29 @@
         margin-bottom: 20px;
         margin-left: 10px;
       }
-
       .top {
         display: flex;
         justify-content: space-around;
-
-        .label {
-          color: #aeaeae;
-          font-size: 14px;
-          font-weight: 500;
-        }
-
-        .value {
-          font-size: 18px;
-          font-weight: 300;
-        }
-
         .data {
           display: flex;
           flex-direction: column;
+          .label {
+            color: #aeaeae;
+            font-size: 14px;
+            font-weight: 500;
+          }
+          .value {
+            font-size: 18px;
+            font-weight: 300;
+          }
         }
       }
-
       .center {
-        padding: 15px;
+        padding: 10px;
         .css-1ex1afd-MuiTableCell-root {
           font-family: "Source Sans 3", sans-serif;
           font-size: 16px;
+          padding: 25px;
         }
 
         .css-177gid-MuiTableCell-root {
@@ -200,16 +177,94 @@
         .MuiTableHead-root {
           .MuiTableRow-root {
             .MuiTableCell-root {
-              font-size: 13.5px;
+              font-size: 14px;
               color: #aeaeae;
               font-family: "Source Sans 3", sans-serif;
+              padding: 25px;
+            }
+          }
+        }
+        .edit-hour-button {
+          margin: 25px 0px;
+          display: flex;
+          justify-content: space-between;
+          button {
+            background-color: #f0f8fd;
+            border: none;
+            color: #018ffe;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 5px;
+            &:hover {
+              background-color: #c5dff8;
+              color: #fff;
+              box-shadow: none;
             }
           }
         }
       }
+      .edit-hour-form {
+        margin: 10px 20px;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.4);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.5);
+        width: 100%;
+        max-width: 95%;
+        box-sizing: border-box;
+        padding: 25px 15px 5px 15px;
+        .form-container {
+          .form-data {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            .label-value {
+              display: flex;
+              flex-direction: column;
+              margin-bottom: 10px;
+              label {
+                font-size: 14px;
+                color: #939292;
+                margin-bottom: 5px;
+                position: relative;
+                transition: all 0.3s ease;
+              }
 
-      .bottom {
-        padding: 12px;
+              input {
+                padding: 8px 8px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 15px;
+                outline: none;
+
+                &:focus {
+                  border-color: #bde3fa;
+                  background-color: #f0f8fd;
+                }
+              }
+            }
+          }
+        }
+        .update-cancel-container {
+          margin: 20px 0px;
+          display: flex;
+          justify-content: space-between;
+          button {
+            background-color: #f0f8fd;
+            border: none;
+            color: #018ffe;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 5px;
+            &:hover {
+              background-color: #c5dff8;
+              color: #fff;
+              box-shadow: none;
+            }
+          }
+        }
       }
     }
   }

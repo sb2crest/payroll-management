@@ -6,6 +6,7 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { NavLink } from "react-router-dom";
+import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
 
 const Sidebar = () => {
   return (
@@ -26,34 +27,40 @@ const Sidebar = () => {
               <span>Dashboard</span>
             </li>
           </NavLink>
-          <NavLink to="/" style={{ textDecoration: "none" }}>
+          <NavLink to="/add-consignee" style={{ textDecoration: "none" }}>
             <li>
               <AssignmentOutlinedIcon className="icon" />
               <span>Add Consignee</span>
             </li>
           </NavLink>
-          <NavLink to="/" style={{ textDecoration: "none" }}>
+          <NavLink to="/add-timesheet" style={{ textDecoration: "none" }}>
             <li>
               <WorkHistoryOutlinedIcon className="icon" />
               <span>Time Sheet</span>
             </li>
           </NavLink>
-          <li>
+          <NavLink to="/add-hours" style={{ textDecoration: "none" }}>
+            <li>
+              <WatchLaterOutlinedIcon className="icon" />
+              <span>Add Hours</span>
+            </li>
+          </NavLink>
+          <li title="In Progress">
             <PersonOutlineOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
           <hr style={{ marginRight: "20px" }} />
-          <li>
+          <li title="In Progress">
             <HelpOutlineOutlinedIcon className="icon" />
             <span>Help Center</span>
           </li>
-          <li>
+          <li title="In Progress">
             <SettingsOutlinedIcon className="icon" />
             <span>Settings</span>
           </li>
         </ul>
       </div>
-      <div className="bottom">notification</div>
+      {/* <div className="bottom">notification</div> */}
     </div>
   );
 };

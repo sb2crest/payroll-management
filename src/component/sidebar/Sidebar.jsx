@@ -38,22 +38,22 @@ const Sidebar = () => {
               <span>Pay Hours</span>
             </li>
           </NavLink>
-          <li>
+          <li title="In Progress">
             <PersonOutlineOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
           <hr style={{ marginRight: "20px" }} />
-          <li>
+          <li title="In Progress">
             <HelpOutlineOutlinedIcon className="icon" />
             <span>Help Center</span>
           </li>
-          <li>
+          <li title="In Progress">
             <SettingsOutlinedIcon className="icon" />
             <span>Settings</span>
           </li>
         </ul>
       </div>
-      <div className="bottom">notification</div>
+      {/* <div className="bottom">notification</div> */}
     </div>
   );
 };

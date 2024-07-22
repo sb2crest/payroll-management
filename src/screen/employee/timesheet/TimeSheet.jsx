@@ -11,66 +11,143 @@ import Paper from "@mui/material/Paper";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
-import Info from "../info/Info";
+import { useEffect, useState } from "react";
 
 const TimeSheet = () => {
-  const [weeklySummary, setWeeklySummary] = useState({});
-  const [employeeWorkHours, setEmployeeWorkHours] = useState([]);
-  const [startDate, setStartDate] = useState("");
   const [renderInfo, setRenderInfo] = useState(false);
-  const [propData, setPropData] = useState({});
+  const [paySchedule, setPaySecdule] = useState("");
+  const [rate, setRate] = useState("");
+  const [weeklyWorkReports, setWeeklyWorkReports] = useState([]);
+  const [dailyWorkReports, setDailyWorkReports] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [workSheetId, setWorkSheetId] = useState(0);
+  const [defaultHours, setDefaultHours] = useState(0);
+  const [totalHours, setTotalHours] = useState(0);
+  const [over_time, setOver_time] = useState(0);
+  const [status, setStatus] = useState("");
 
-  const fetchReportData = async () => {
-    const requestBody = {
-      managerUniqueId: "MGR1",
-      employeeUniqueId: "EMP002",
-      startDate: startDate,
-    };
+  const fetchEmployeeData = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/payrollManager/weekly-report",
-        requestBody,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+      const response = await axios.get(
+        `http://localhost:8080/api/payrollManager/getEmployeeByUniqueId/EMP001`
       );
       const data = response.data;
-      setPropData(data);
-      console.log("Response Data:", data);
-      setWeeklySummary({
-        weeklySubmissionId: data.weeklySubmissionId,
-        weeklyCompanyTotalWorkingTime: data.weeklyCompanyTotalWorkingTime,
-        weeklyEmployeeTotalWorkedTime: data.weeklyEmployeeTotalWorkedTime,
-        weeklyEmployeeOverTimeHours: data.weeklyEmployeeOverTimeHours,
-        weeklyEmployeeWorkingDays: data.weeklyEmployeeWorkingDays,
-        startDate: data.startDate,
-        endDate: data.endDate,
-        paySchedule: data.paySchedule,
-        payRate: data.payRate,
-        reportStatus: data.reportStatus,
-      });
-      setEmployeeWorkHours(data.employeeWorkHours);
-      console.log("Prop Data:", propData);
-      console.log("weeklySummary:", weeklySummary);
-      console.log("employeeWorkHours:", employeeWorkHours);
+      console.log("Employee Data:", data);
+      setPaySecdule(data.weeklyWorkReports[0].paySchedule);
+      setRate(data.weeklyWorkReports[0].payRate);
+      setStatus(data.weeklyWorkReports[0].reportStatus);
+      setWorkSheetId(data.weeklyWorkReports[0].weeklySubmissionId);
+      setDefaultHours(data.weeklyWorkReports[0].weeklyCompanyTotalWorkingTime);
+      setTotalHours(data.weeklyWorkReports[0].weeklyEmployeeTotalWorkedTime);
+      setOver_time(data.weeklyWorkReports[0].weeklyEmployeeOverTimeHours);
+      setStartDate(data.weeklyWorkReports[0].startDate);
+      setEndDate(data.weeklyWorkReports[0].endDate);
+      setWeeklyWorkReports(data.weeklyWorkReports);
+      setDailyWorkReports(data.employeeWorkHours || []);
+      console.log("Daily Work Reports:", dailyWorkReports);
     } catch (error) {
-      console.error("Error fetching report data:", error);
+      console.error("Error fetching employee data:", error);
     }
   };
 
-  const handleSearchClick = (e) => {
-    e.preventDefault();
-    console.log("Hitting Search");
-    fetchReportData();
-  };
+  useEffect(() => {
+    fetchEmployeeData();
+  }, []);
 
   return (
     <div>
       {renderInfo ? (
-        <Info weeklySummary={weeklySummary} />
+        <div className="info">
+          <Sidebar />
+          <div className="info-container">
+            <Navbar />
+            <div className="content-container">
+              <div className="edit-print-button">
+                {(status === "REJECTED" ||
+                  status === "PENDING" ||
+                  status === "DRAFT") && (
+                  <Link to="/edit-hours" style={{ textDecoration: "none" }}>
+                    <button className="button">Edit</button>
+                  </Link>
+                )}
+                <button className="button">Print</button>
+              </div>
+              <div className="top">
+                <div className="data">
+                  <span className="label">Status</span>
+                  <span className="value">{status}</span>
+                </div>
+                <div className="data">
+                  <span className="label">Start Date</span>
+                  <span className="value">{startDate}</span>
+                </div>
+                <div className="data">
+                  <span className="label">End Date</span>
+                  <span className="value">{endDate}</span>
+                </div>
+                <div className="data">
+                  <span className="label">ID</span>
+                  <span className="value">{workSheetId}</span>
+                </div>
+                <div className="data">
+                  <span className="label">Default Hours</span>
+                  <span className="value">{defaultHours} Hours</span>
+                </div>
+                <div className="data">
+                  <span className="label">Over Time</span>
+                  <span className="value">{over_time} Hours</span>
+                </div>
+                <div className="data">
+                  <span className="label">Total Hours</span>
+                  <span className="value">{totalHours} Hours</span>
+                </div>
+              </div>
+              <div className="center">
+                <TableContainer component={Paper}>
+                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Record ID</TableCell>
+                        <TableCell align="right">Date</TableCell>
+                        <TableCell align="right">Start Time</TableCell>
+                        <TableCell align="right">End Time</TableCell>
+                        <TableCell align="right">Default Hours</TableCell>
+                        <TableCell align="right">Worked Hours</TableCell>
+                        <TableCell align="right">Over Time</TableCell>
+                        <TableCell align="right">Total Hours</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {dailyWorkReports.map((daily) => (
+                        <TableRow key={daily.recordId}>
+                          <TableCell component="th" scope="row">
+                            {daily.recordId}
+                          </TableCell>
+                          <TableCell align="right">{daily.date}</TableCell>
+                          <TableCell align="right">{daily.startTime}</TableCell>
+                          <TableCell align="right">{daily.endTime}</TableCell>
+                          <TableCell align="right">
+                            {daily.dailyCompanyWorkingHours}
+                          </TableCell>
+                          <TableCell align="right">
+                            {daily.dailyEmployedWorkedHours}
+                          </TableCell>
+                          <TableCell align="right">
+                            {daily.dayOvertimeHoursForEmployee}
+                          </TableCell>
+                          <TableCell align="right">
+                            {daily.dailyTotalHoursForEmployee}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </div>
+            </div>
+          </div>
+        </div>
       ) : (
         <div className="timesheet">
           <Sidebar />
@@ -83,46 +160,19 @@ const TimeSheet = () => {
                     type="text"
                     className="search-text-box"
                     placeholder="Search"
-                    value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
                   />
-                  <button className="search-button" onClick={handleSearchClick}>
+                  <button className="search-button">
                     <SearchOutlinedIcon className="icon" />
                   </button>
                 </div>
                 <div className="schedule-rate-container">
-                  <div className="status">
-                    <span className="label">Report Status</span>
-                    <Link
-                      to="/info"
-                      style={{ textDecoration: "none" }}
-                      onClick={() => setRenderInfo(true)}
-                    >
-                      <span className="value">
-                        {weeklySummary.reportStatus}
-                      </span>
-                    </Link>
-                  </div>
-                  <div className="worksheet-id">
-                    <span className="label">WorkSheet ID</span>
-                    <span className="value">
-                      {weeklySummary.weeklySubmissionId}
-                    </span>
-                  </div>
                   <div className="schedule">
                     <span className="label">Pay Schedule</span>
-                    <span className="value">{weeklySummary.paySchedule}</span>
-                  </div>
-                  <div className="days">
-                    <span className="label">Working Days</span>
-                    <span className="value">
-                      {" "}
-                      {weeklySummary.weeklyEmployeeWorkingDays}
-                    </span>
+                    <span className="value">{paySchedule}</span>
                   </div>
                   <div className="rate">
                     <span className="label">Pay Rate</span>
-                    <span className="value">{weeklySummary.payRate}</span>
+                    <span className="value">{rate}</span>
                   </div>
                 </div>
               </div>
@@ -131,40 +181,52 @@ const TimeSheet = () => {
                   <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        <TableCell>Record ID</TableCell>
-                        <TableCell align="right">Date</TableCell>
-                        <TableCell align="right">Check-In</TableCell>
-                        <TableCell align="right">Check-Out</TableCell>
+                        <TableCell>Report Status</TableCell>
+                        <TableCell align="right">WorkSheet ID</TableCell>
+                        <TableCell align="right">Start Date</TableCell>
+                        <TableCell align="right">End Date</TableCell>
                         <TableCell align="right">Default Hours</TableCell>
-                        <TableCell align="right">Worked Hours</TableCell>
-                        <TableCell align="right">Over Time</TableCell>
-                        <TableCell align="right">Total Work Hours</TableCell>
+                        <TableCell align="right">Over Time Hours</TableCell>
+                        <TableCell align="right">Total Working Hours</TableCell>
+                        <TableCell align="right">Working Days</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {employeeWorkHours.map((workHour) => (
-                        <TableRow key={workHour.recordId}>
-                          <TableCell component="th" scope="row">
-                            {workHour.recordId}
+                      {weeklyWorkReports.map((report) => (
+                        <TableRow key={report.weeklySubmissionId}>
+                          <TableCell
+                            onClick={() => setRenderInfo(true)}
+                            style={{
+                              color:
+                                status === "Rejected"
+                                  ? "red"
+                                  : status === "Approved"
+                                  ? "green"
+                                  : "orange",
+                              textDecoration: "underline",
+                              cursor: "pointer",
+                            }}
+                          >
+                            {report.reportStatus}
                           </TableCell>
-                          <TableCell align="right">{workHour.date}</TableCell>
-                          <TableCell align="right">
-                            {workHour.startTime}
+                          <TableCell component="th" scope="row" align="right">
+                            {report.weeklySubmissionId}
                           </TableCell>
                           <TableCell align="right">
-                            {workHour.endTime}
+                            {report.startDate}
+                          </TableCell>
+                          <TableCell align="right">{report.endDate}</TableCell>
+                          <TableCell align="right">
+                            {report.weeklyCompanyTotalWorkingTime}
                           </TableCell>
                           <TableCell align="right">
-                            {workHour.dailyCompanyWorkingHours}
+                            {report.weeklyEmployeeOverTimeHours}
                           </TableCell>
                           <TableCell align="right">
-                            {workHour.dailyEmployedWorkedHours}
+                            {report.weeklyEmployeeTotalWorkedTime}
                           </TableCell>
                           <TableCell align="right">
-                            {workHour.dayOvertimeHoursForEmployee}
-                          </TableCell>
-                          <TableCell align="right">
-                            {workHour.dailyTotalHoursForEmployee}
+                            {report.weeklyEmployeeWorkingDays}
                           </TableCell>
                         </TableRow>
                       ))}
