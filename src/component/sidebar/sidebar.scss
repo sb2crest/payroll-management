@@ -38,15 +38,15 @@
         transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 
         &:hover {
-          background-color: #39acf9;
+          background-color: #3192d3;
           border-radius: 5px;
 
           .icon {
-            color: #fff;
+            color: #018ffe;
           }
 
           span {
-            color: #fff;
+            color: #018ffe;
           }
         }
 
@@ -65,7 +65,7 @@
     .active {
       li {
         padding: 5px;
-        box-shadow: 0 0 0 0.3px #61bafe inset;
+        box-shadow: 0 0 0 0.3px #b2daf9 inset;
         background-color: #f0f8fd;
         border-radius: 5px;
       }

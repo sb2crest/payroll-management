@@ -1,16 +1,13 @@
-// import React from 'react'
 import "./widget.scss";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 
-const Widget = () => {
+const Widget_3 = () => {
   return (
     <div className="widget">
       <div className="left">
-        <span className="title">Pay Date</span>
-        <span className="counter" style={{ color: "darkblue" }}>
-          1 August 2024
-        </span>
-        <span className="link">See All Pay Date</span>
+        <span className="title">Attendance Progress</span>
+        <span className="counter"  style={{ color: "green" }}>87%</span>
+        <span className="link">See Previous Progress </span>
       </div>
       <div className="right">
         <div className="number"></div>
@@ -20,4 +17,4 @@ const Widget = () => {
   );
 };
 
-export default Widget;
+export default Widget_3;
